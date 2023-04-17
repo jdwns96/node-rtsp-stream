@@ -1,0 +1,22 @@
+diff --git a/node_modules/node-rtsp-stream/videoStream.js b/node_modules/node-rtsp-stream/videoStream.js
+index 720cb53..e1409bc 100644
+--- a/node_modules/node-rtsp-stream/videoStream.js
++++ b/node_modules/node-rtsp-stream/videoStream.js
+@@ -127,8 +127,16 @@ VideoStream.prototype.onSocketConnect = function(socket, request) {
+   socket.remoteAddress = request.connection.remoteAddress
+ 
+   return socket.on("close", (code, message) => {
++
++    if (this.wsServer.clients.size === 0) {
++      this.stop();
++      this.streams[this.wsPort] = null;
++    }
++
+     return console.log(`${this.name}: Disconnected WebSocket (` + this.wsServer.clients.size + " total)")
+   })
+ }
+ 
++VideoStream.prototype.streams = {};
++
+ module.exports = VideoStream
+\ No newline at end of file
