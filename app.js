@@ -11,13 +11,24 @@ app.use(cors());
 app.use(express.json()); // body 정보 처리
 app.use(express.static(path.join(__dirname, "/public")));
 
-const config = [
+const stream_configs = [
   {
     key: "1",
     port: "9000",
-    // url: "rtsp://admin:intflow3121@wonsan.iptime.org:11154/cam/realmonitor?channel=1&subtype=0",
-    // url: "rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4",
-    url: "rtsp://admin:intflow3121@edgefarm.ai:11001/streaming/channels/102/",
+    url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=1&subtype=0",
+    // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
+  },
+  {
+    key: "2",
+    port: "9001",
+    url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=2&subtype=0",
+    // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
+  },
+  {
+    key: "3",
+    port: "9002",
+    url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=3&subtype=0",
+    // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
   },
 ];
 
@@ -62,9 +73,9 @@ app.post("/start-stream", (req, res) => {
   console.log(url, port, key);
   startStream(key, url, port);
 
-  // res.json({
-  //   url: `ws://192.168.0.30:${port}`,
-  // });
+  res.json({
+    url: `ws://192.168.0.30:${port}`,
+  });
 });
 
 // steams
@@ -121,8 +132,8 @@ app.get("/", (req, res) => {
 // stream sever port
 // 자체 서버가 가지고있는 포트
 app.listen(8081, async () => {
-  // config.forEach((c) => {
-  //   const { url, port, key = "stream" } = c;
+  // stream_configs.forEach((v, i) => {
+  //   const { key, url, port } = v;
   //   startStream(key, url, port);
   // });
   console.log("server running 8081");

@@ -14,9 +14,21 @@ const streams = {};
 
 const stream_configs = [
   {
-    key: "bunnyvideo",
+    key: "1",
     port: "9000",
     url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=1&subtype=0",
+    // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
+  },
+  {
+    key: "2",
+    port: "9001",
+    url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=2&subtype=0",
+    // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
+  },
+  {
+    key: "3",
+    port: "9002",
+    url: "rtsp://admin:intflow3121@edgefarm.ai:11009/cam/realmonitor?channel=3&subtype=0",
     // url: "rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov",
   },
 ];
